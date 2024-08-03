@@ -29,11 +29,16 @@
     box-sizing: border-box;
 }
 
+html,body{
+    height: 100%;
+}
 
 body{
+    display: flex;
+    flex-direction: column;
     background-color: var(--lightBlue100);
     font-family: var(--fuente-primaria);
-    min-height: 100%;
+    min-height: 100vh; /* asegura que el contenido siempre ocupe al menos la altura de la ventana. */
 }
 
 
@@ -53,74 +58,77 @@ body{
 
 /* ----------------MAIN---------------- */
 .main{
-    position: relative; 
+    flex: 1; /*  Hace que el main crezca para ocupar todo el espacio disponible entre el header y el footer. */
     display: flex;
+    position: relative;
 }
 
 /* ---------AREA DEL ENCRIPTADOR------------ */
 
 .main__encriptador{
     width: 100%;
+    height: 100%;
     margin: 1rem 2.5rem;
+   
 }
 
 .main__encriptador__container{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-height: calc(100vh - 1rem); /* Ajusta según la altura disponible */
+    width: 100%;
     padding: 1rem 2.5rem;
-    max-height: calc(100vh - 0.5rem); /* Ajusta según la altura disponible */
     overflow: hidden;
-    
 }
 
-.main__encriptador__container__text-area{
+.main__encriptador__container__text-area{ 
     resize: none;
     outline: none;
+    border:none;
     overflow-y: auto;
     font-family: var(--fuente-primaria);
     font-size: 32px;
     text-align: center;
-    border: none;
-    background-color: var(--lightBlue100);
-    height: 100%; /* Permite que crezca según contenido */
-    min-height: 100%; /* Altura máxima del textarea */
-    padding: 1rem; /* Espacio interior para comodidad */
-
+    background-color: var(--lightBlue100); 
+    width: 100%;
+    max-height: auto;
+    padding: 1rem;
 }
 
 .main__encriptador__container__bloque{
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     width: 100%;
-    
 }
 
 .main__encriptador__container__bloque__aviso{
     display: flex;
     gap: 0.5rem;
+    margin-left: 1rem;
     color: #f53d16;
 }
 
 .main__encriptador__container__bloque__botones{
     display: flex;
+    justify-content: center;
     gap: 1.5rem;
-    margin-top: 1rem;
-    margin-left: auto;
-    margin-right: auto;
     width: 100%;
-}
+    height: 100%;
 
+    
+}
 
 .main__encriptador__container__bloque__botones__btn1,
 .main__encriptador__container__bloque__botones__btn2{
-    width: 50%;
     padding: 1.5rem 0;
     font-family: var(--fuente-primaria);
     font-size: 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
     text-align: center;
+    width: 100%;
 }
 
 .main__encriptador__container__bloque__botones__btn1{
@@ -145,7 +153,8 @@ body{
 
 /* ------------AREA DEL RESULTADO-------------- */
 .main__resultado{
-    width: 100%;
+    width: 100%;;
+    max-height: 100%; 
     margin: 1rem 2.5rem;
 }
 
@@ -155,8 +164,8 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Ajusta según la altura disponible */
-    max-height: calc(100vh - 1rem); 
+    gap:1rem;
+    /* max-height: calc(100vh - 1rem); */ /* Ajusta según la altura disponible */
     height: 100%;
     overflow: hidden;
     background-color: white;
@@ -179,6 +188,7 @@ body{
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+    
     /* display: none; */
 }
 
@@ -210,16 +220,20 @@ body{
     display: none;
 }
 
-#btn-copiar{
-    margin-bottom: 1rem;
-    display: none;  
+.main__resultado_container__botones{
+    min-width: 80%;
+    margin: 2rem;
 }
 
-
+#btn-copiar{
+    display: none;
+}
 
 /* --------FOOTER-------- */
 .footer{
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 1.5rem;
     box-sizing: border-box;
@@ -228,48 +242,85 @@ body{
     font-size: 1rem;
 }
 
+ @media((width <= 768px) ){
+    .header__menu {
+        padding: 1rem 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .main {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+        height: auto;
+        padding: 1rem;
+    
+    }
 
+    .main__encriptador__container__bloque__botones{
+        display: flex;
+        flex-direction: column;
+    }
 
-/* --------RESPONSIVE-------- */
-@media((width <= 768px) and (height <= 1024px) ){
-
-.header__menu {
-    padding: 1rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.main {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-
-}
-
-.main__encriptador {
-    width: auto;
-    margin: auto;
-
-}
-
-#btn-copiar{
-    /* adaptar a la pantalla */
-    width: auto;
-    padding: 1rem;
-}
-
-}
-
-@media (max-width: 768px) {
     .main__resultado {
-        margin: 5rem;
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .main__resultado__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        height: auto;
+        
         padding: 1rem;
     }
 
-    .footer {
-        width: 100%;
+    .main__resultado__container__botones{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+
     }
-}
+    
+
+    
+
+    #btn-copiar{
+        width: auto;
+        padding: 1rem;
+    }
+    .footer {
+        flex-direction: column;;
+        align-items: center;
+        padding: 1rem;
+        width: auto;
+        height: auto;
+    }
+    
+    }
+
+    @media (height > 1024px) {
+        
+        .main__encriptador{
+            min-height: auto;
+        }
+
+
+
+        .main__encriptador__container__text-area {
+            max-height: auto;
+        }
+        
+
+    }    
+  

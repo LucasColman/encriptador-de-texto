@@ -39,11 +39,11 @@ function encriptar() {
     textAreaResultado.style.display = "block";
     btnCopiar.style.display = "block";
     let textoEncriptado = textoUsuario
-      .replace("e", "enter")
-      .replace("i", "imes")
-      .replace("a", "ai")
-      .replace("o", "ober")
-      .replace("u", "ufat");
+      .replaceAll("e", "enter")
+      .replaceAll("i", "imes")
+      .replaceAll("a", "ai")
+      .replaceAll("o", "ober")
+      .replaceAll("u", "ufat");
     asignarTexto("#resultado", textoEncriptado);
     return textoEncriptado;
   } else {

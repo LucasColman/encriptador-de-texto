@@ -17,7 +17,7 @@ No deben ser utilizados letras con acentos ni caracteres especiales
 Debe ser posible convertir una palabra para la versión encriptada también devolver una palabra encriptada para su versión original.
 
 */
-
+document.querySelector(".main__encriptador__container__text-area").value = "";
 let infoTarjeta = document.querySelector(".main__resultado__container__info");
 let textAreaResultado = document.querySelector("#resultado");
 let btnCopiar = document.querySelector("#btn-copiar");
@@ -47,7 +47,7 @@ function encriptar() {
     asignarTexto("#resultado", textoEncriptado);
     return textoEncriptado;
   } else {
-    swal("Error", "El texto ingresado no es válido", "error");
+    swal("El texto ingresado no es válido", "Recuerda, solo minusculas y sin caracteres especiales", "error");
   }
 }
 
@@ -68,7 +68,7 @@ function desencriptar() {
       .replaceAll("ufat", "u");
     asignarTexto("#resultado", txtDesencriptado);
   } else {
-    swal("Error", "El texto ingresado no es válido", "error");
+    swal("El texto ingresado no es válido", "Recuerda, solo minusculas y sin caracteres especiales", "error");
   }
 }
 
@@ -82,10 +82,3 @@ const copiarTexto = async () => {
     console.log("Error al copiar", err);
   }
 };
-
-/* navigator.permissions.query({ name: "write-on-clipboard" })
-.then((resultado) => {
-  if (resultado.state == "granted" || resultado.state == "prompt") {
-    alert("¡Permiso de escritura concedido!");
-  }
-}); */

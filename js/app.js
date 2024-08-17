@@ -17,16 +17,16 @@ No deben ser utilizados letras con acentos ni caracteres especiales
 Debe ser posible convertir una palabra para la versión encriptada también devolver una palabra encriptada para su versión original.
 
 */
-document.querySelector(".main__encriptador__container__text-area").value = "";
+document.querySelector("#textoUsuario").value = "";
 let infoTarjeta = document.querySelector(".main__resultado__container__info");
 let textAreaResultado = document.querySelector("#resultado");
 let btnCopiar = document.querySelector("#btn-copiar");
 let expReg = /^[a-z\s]+$/;
 
-let texto = textAreaResultado.value;
+/* let texto = textAreaResultado.value; */
 
-function asignarTexto(etiqueta, texto) {
-  let etiquetaHTML = document.querySelector(etiqueta);
+function asignarTexto(elemento, texto) {
+  let etiquetaHTML = document.querySelector(elemento);
   etiquetaHTML.innerHTML = texto;
 }
 
@@ -48,6 +48,7 @@ function encriptar() {
     return textoEncriptado;
   } else {
     swal("El texto ingresado no es válido", "Recuerda, solo minusculas y sin caracteres especiales", "error");
+    
   }
 }
 
@@ -69,6 +70,7 @@ function desencriptar() {
     asignarTexto("#resultado", txtDesencriptado);
   } else {
     swal("El texto ingresado no es válido", "Recuerda, solo minusculas y sin caracteres especiales", "error");
+    
   }
 }
 
